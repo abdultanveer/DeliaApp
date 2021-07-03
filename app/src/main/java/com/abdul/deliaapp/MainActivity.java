@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener {
@@ -37,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     public void clickHandler(View view) {
         switch (view.getId()){
             case R.id.buttonLogin:
-                String name = nameEditText.getText().toString();
+                TextView loginTextView = findViewById(R.id.tvLoginMessage);
+                loginTextView.setText(nameEditText.getText().toString());
+               /* String name = nameEditText.getText().toString();
                 createAlarm("demo alarm",9,12);
-                Toast.makeText(this, "alarm set--"+name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "alarm set--"+name, Toast.LENGTH_SHORT).show();*/
 
                 break;
             case R.id.buttonCancel:
