@@ -1,5 +1,7 @@
 package com.abdul.deliaapp;
 
+import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -30,11 +32,24 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                 break;
             case R.id.buttonCancel:
                 Intent waterIntent = new Intent();
-                waterIntent.setAction("ineed.water");
+                waterIntent.setAction("ineed.water"); //implicit intent
                 startActivity(waterIntent);
+                break;
+            case R.id.buttonStart:
+                Intent safrIntent = new Intent(MainActivity.this,SecondActivity.class);//explicit
+                startActivityForResult(safrIntent,123);
                 break;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 123){
+            String result = data.getExtras().getString("res");
+            Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
