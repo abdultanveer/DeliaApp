@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //activity_main was inflated
-         nameEditText = findViewById(R.id.etName); //getting a handle from the inflated xml
-        nameEditText.setOnFocusChangeListener(this);
+       //  nameEditText = findViewById(R.id.etName); //getting a handle from the inflated xml
+//        nameEditText.setOnFocusChangeListener(this);
 
     }
 
