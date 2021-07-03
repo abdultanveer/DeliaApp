@@ -8,16 +8,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnFocusChangeListener {
+
+    String[] languages = new String[]{"english","chinese","urdu"};
     EditText nameEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //activity_main was inflated
         nameEditText = findViewById(R.id.etName); //getting a handle from the inflated xml
+
+        ListView languagesListView = findViewById(R.id.lv_languages);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,languages);
+        languagesListView.setAdapter(adapter);
+
+
 //        nameEditText.setOnFocusChangeListener(this);
 
     }
