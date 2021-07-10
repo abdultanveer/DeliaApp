@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -102,7 +103,19 @@
         android:id="@+id/tvLoginMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="372dp" />
+        app:layout_constraintStart_toStartOf="@id/buttonCancel"
+        app:layout_constraintTop_toBottomOf="@id/buttonCancel" />
+
+    <Button
+        android:id="@+id/buttonDial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickHandler"
+        android:layout_marginLeft="10dp"
+        android:text="dial"
+            app:layout_constraintBaseline_toBaselineOf="@id/buttonCancel"
+        app:layout_constraintLeft_toRightOf="@id/buttonCancel"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>

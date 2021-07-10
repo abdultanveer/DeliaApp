@@ -1,11 +1,16 @@
 package com.abdul.deliaapp;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.AlarmClock;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -30,16 +35,37 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                 android.R.layout.simple_list_item_1,languages);
         languagesListView.setAdapter(adapter);
 
+       /* ConstraintLayout constraintLayout = findViewById(R.id.clayout);
+        TextView myTextView = new TextView(this);
+        myTextView.setText("dynamically created textview");
+        constraintLayout.addView(myTextView);*/
+
 
 //        nameEditText.setOnFocusChangeListener(this);
 
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
     public void clickHandler(View view) {
         switch (view.getId()){
             case R.id.buttonLogin:
-                TextView loginTextView = findViewById(R.id.tvLoginMessage);
-                loginTextView.setText(nameEditText.getText().toString());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("welcome to alert dialog")
+                        .setTitle("demo");
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+                /*TextView loginTextView = findViewById(R.id.tvLoginMessage);
+                loginTextView.setText(nameEditText.getText().toString());*/
                /* String name = nameEditText.getText().toString();
                 createAlarm("demo alarm",9,12);
                 Toast.makeText(this, "alarm set--"+name, Toast.LENGTH_SHORT).show();*/
@@ -52,7 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                 break;
             case R.id.buttonStart:
                 Intent safrIntent = new Intent(MainActivity.this,SecondActivity.class);//explicit
+                safrIntent.putExtra("mykey",nameEditText.getText().toString());
                 startActivityForResult(safrIntent,123);
+                break;
+            case R.id.buttonDial:
+                Intent dialIntent = new Intent(Intent.ACTION_VIEW,Uri.parse("tel:12345678" ));
+                        //"http://www.google.com"));
+                        //new Intent(Intent.ACTION_DIAL, Uri.parse("tel:12345678"));
+                startActivity(dialIntent);
                 break;
         }
 
