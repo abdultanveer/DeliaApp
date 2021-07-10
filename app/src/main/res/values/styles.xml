@@ -6,4 +6,8 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="header_text_style" parent="logo_text_style">
+        <item name="android:textSize">50sp</item>
+
+    </style>
 </resources>

@@ -28,6 +28,7 @@
         android:layout_marginEnd="207dp"
         android:layout_marginRight="207dp"
         android:text="TextView"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
