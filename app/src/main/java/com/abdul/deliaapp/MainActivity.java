@@ -12,11 +12,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.AlarmClock;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,11 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
     String[] languages = new String[]{"english","chinese","urdu"};
     EditText nameEditText;
+    Button loginButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //activity_main was inflated --layout inflater
         nameEditText = findViewById(R.id.etName); //getting a handle from the inflated xml
+        loginButton = findViewById(R.id.buttonLogin);
+        registerForContextMenu(loginButton);
 
         ListView languagesListView = findViewById(R.id.lv_languages);
 
@@ -70,6 +75,28 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
                  break;
          }
 
+        return true;
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+    }
+
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+         super.onContextItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.fMenuItem:
+                Toast.makeText(this, "context first item", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sMenuItem:
+                Toast.makeText(this, "context second item", Toast.LENGTH_SHORT).show();
+
+                break;
+        }
         return true;
     }
 
