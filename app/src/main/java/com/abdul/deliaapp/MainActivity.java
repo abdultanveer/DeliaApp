@@ -12,6 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.AlarmClock;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //activity_main was inflated
+        setContentView(R.layout.activity_main); //activity_main was inflated --layout inflater
         nameEditText = findViewById(R.id.etName); //getting a handle from the inflated xml
 
         ListView languagesListView = findViewById(R.id.lv_languages);
@@ -43,6 +46,31 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
 
 //        nameEditText.setOnFocusChangeListener(this);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         super.onOptionsItemSelected(item);
+         switch (item.getItemId()){
+             case R.id.fMenuItem:
+                 Toast.makeText(this, "first item", Toast.LENGTH_SHORT).show();
+                 break;
+             case R.id.sMenuItem:
+                 Toast.makeText(this, "second item", Toast.LENGTH_SHORT).show();
+
+                 break;
+         }
+
+        return true;
     }
 
     @Override
