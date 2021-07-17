@@ -1,6 +1,10 @@
 package com.abdul.deliaapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.widget.TextView;
 
 import com.abdul.deliaapp.db.WordDao;
 import com.abdul.deliaapp.db.WordRoomDB;
+import com.abdul.deliaapp.db.WordViewModel;
 import com.abdul.deliaapp.model.Word;
 
 public class DataActivity extends AppCompatActivity {
@@ -27,6 +32,20 @@ public class DataActivity extends AppCompatActivity {
         rempwdCheckBox = findViewById(R.id.checkBoxRemPwd);
         WordRoomDB  wordRoomDB = WordRoomDB.getDatabase(this);
         wordDao = wordRoomDB.wordDao();
+        TextView mNameTextView = findViewById(R.id.tvLiveData);
+        WordViewModel mModel = ViewModelProviders.of(this).get(WordViewModel.class);
+
+
+
+
+
+        mModel.getAllWords().observe(this,words1 -> {
+            if(words1.size()!=0) {
+                int size = words1.size();
+                Word word = words1.get(size - 1);
+                mNameTextView.setText(word.getWord());
+            }
+        });
 
     }
 

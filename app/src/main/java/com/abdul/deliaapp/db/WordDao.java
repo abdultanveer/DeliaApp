@@ -1,5 +1,6 @@
 package com.abdul.deliaapp.db;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -15,7 +16,7 @@ public interface WordDao {
    void insert(Word word);
 
    @Query("select * from Word")
-   public List<Word> getAllWords();
+   public LiveData<List<Word>> getAllWords();
 
    /*@Update
    public void updateWords(Word... words);*/

@@ -7,9 +7,9 @@ import com.abdul.deliaapp.model.Word;
 
 public  class insertAsyncTask extends AsyncTask<Word, Void, Void> {
 
-    private WordDao mAsyncTaskDao;
+    public WordDao mAsyncTaskDao;
 
-    insertAsyncTask(WordDao dao) {
+    public insertAsyncTask(WordDao dao) {
         mAsyncTaskDao = dao;
     }
 
