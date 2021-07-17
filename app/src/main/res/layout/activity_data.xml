@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".DataActivity">
 
+    <Button
+        android:id="@+id/btnCommit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginTop="46dp"
+        android:onClick="dbHandler"
+        android:text="commit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxRemPwd" />
+
     <EditText
         android:id="@+id/etSpname"
         android:layout_width="wrap_content"
@@ -29,4 +41,26 @@
         android:text="remember passowrd"
         app:layout_constraintStart_toStartOf="@+id/etSpname"
         app:layout_constraintTop_toBottomOf="@+id/etSpname" />
+
+    <TextView
+        android:id="@+id/tvDb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="21dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCommit" />
+
+    <Button
+        android:id="@+id/btnQuery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:onClick="dbHandler"
+        android:text="query"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnCommit"
+        app:layout_constraintStart_toEndOf="@+id/btnCommit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

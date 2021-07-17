@@ -4,19 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.abdul.deliaapp.db.WordDao;
+import com.abdul.deliaapp.db.WordRoomDB;
+import com.abdul.deliaapp.model.Word;
 
 public class DataActivity extends AppCompatActivity {
     public static final String FILE_NAME = "deliasp";
     EditText nameEditText;
     CheckBox rempwdCheckBox;
+    WordDao wordDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
         nameEditText = findViewById(R.id.etSpname);
         rempwdCheckBox = findViewById(R.id.checkBoxRemPwd);
+        WordRoomDB  wordRoomDB = WordRoomDB.getDatabase(this);
+        wordDao = wordRoomDB.wordDao();
+
     }
 
     @Override
@@ -55,5 +65,31 @@ public class DataActivity extends AppCompatActivity {
         editor.putString("name",name);
         //save the file
         editor.apply();
+    }
+
+    public void dbHandler(View view) {
+        switch (view.getId()){
+            case R.id.btnCommit:
+                insertWord();
+
+                break;
+            case R.id.btnQuery:
+                getData();
+                break;
+        }
+
+
+    }
+
+    private void getData() {
+        TextView textView = findViewById(R.id.tvDb);
+        GetWordAsyncTask getWordAsyncTask = new GetWordAsyncTask(wordDao,textView);
+        getWordAsyncTask.execute();
+    }
+
+    private void insertWord() {
+        insertAsyncTask insertAsyncTask = new insertAsyncTask(wordDao);
+        insertAsyncTask.execute(new Word(nameEditText.getText().toString()));
+        //wordDao.insert();
     }
 }
