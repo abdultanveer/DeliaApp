@@ -12,12 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliaApp">
-        <activity android:name=".JobSchedulerActivity">
+        <activity android:name=".DataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".JobSchedulerActivity">
+
         </activity>
 
         <service
@@ -25,9 +28,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ServiceActivity">
-
-        </activity>
+        <activity android:name=".ServiceActivity"></activity>
 
         <receiver android:name=".SmsReceiver">
             <intent-filter android:priority="5">
