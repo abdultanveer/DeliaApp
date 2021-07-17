@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.abdul.deliaapp.db.WordDao;
@@ -82,8 +83,9 @@ public class DataActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        TextView textView = findViewById(R.id.tvDb);
-        GetWordAsyncTask getWordAsyncTask = new GetWordAsyncTask(wordDao,textView);
+        //TextView textView = findViewById(R.id.tvDb);
+        ListView dbListView = findViewById(R.id.dblist);
+        GetWordAsyncTask getWordAsyncTask = new GetWordAsyncTask(this,wordDao,dbListView);
         getWordAsyncTask.execute();
     }
 

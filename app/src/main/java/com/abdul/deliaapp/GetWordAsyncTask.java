@@ -1,6 +1,9 @@
 package com.abdul.deliaapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.abdul.deliaapp.db.WordDao;
@@ -10,10 +13,12 @@ import java.util.List;
 
 public class GetWordAsyncTask extends AsyncTask<Void,Void,List<Word>> {
     WordDao wordDao;
-    TextView mTextView;
-    public GetWordAsyncTask(WordDao wordDao, TextView textView) {
+    ListView listView;
+    Context mContext;
+    public GetWordAsyncTask(Context context,WordDao wordDao, ListView listView) {
+        mContext = context;
         this.wordDao = wordDao;
-        mTextView = textView;
+        this.listView = listView;
     }
 
     @Override
@@ -24,6 +29,9 @@ public class GetWordAsyncTask extends AsyncTask<Void,Void,List<Word>> {
     @Override
     protected void onPostExecute(List<Word> words) {
         super.onPostExecute(words);
-        mTextView.setText(words.toString());
+        ArrayAdapter<Word> adapter = new ArrayAdapter<Word>(mContext, android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                words);
+        listView.setAdapter(adapter);
     }
 }

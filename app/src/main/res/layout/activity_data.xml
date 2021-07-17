@@ -63,4 +63,12 @@
         android:text="query"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnCommit"
         app:layout_constraintStart_toEndOf="@+id/btnCommit" />
+
+    <ListView
+        android:id="@+id/dblist"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDb"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
